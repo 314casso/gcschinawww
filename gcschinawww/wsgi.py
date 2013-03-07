@@ -14,6 +14,9 @@ framework.
 
 """
 import os
+import sys
+
+sys.path.insert(0, '/opt/src/gcschinawww')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gcschinawww.settings")
 

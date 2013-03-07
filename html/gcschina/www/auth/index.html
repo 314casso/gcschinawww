@@ -1,0 +1,8 @@
+@auto[]
+
+@main[]
+$cookie:gcs_is_admin[
+	$.value[1]
+	$.expires[session]
+]
+$response:location[http://${env:HTTP_HOST}/]

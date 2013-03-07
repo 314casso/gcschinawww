@@ -1,0 +1,15 @@
+{% load page_tags %}
+{% if page_reverce_id %}
+<div class="item">
+	{% load cms_tags sekizai_tags %}
+			
+	{ get_menuitem  }
+		
+	{% block submenu %}
+	<ul class="sub-menu">
+	
+	{ sitetree_menu }
+	</ul>
+	{% endblock submenu %}
+</div>
+{% endif %}

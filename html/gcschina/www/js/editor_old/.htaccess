@@ -1,0 +1,12 @@
+#Deny from All
+
+###
+###
+###
+RemoveHandler htm html p3 css
+Options -Indexes
+
+###
+###
+###
+RewriteEngine off

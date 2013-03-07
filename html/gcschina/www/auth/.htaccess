@@ -1,0 +1,8 @@
+###
+###
+###
+AuthType Basic
+AuthName "ADMIN"
+AuthUserFile /usr/local/www/slav/gcschina.ru/www/auth/.admins
+require valid-user
+Order Allow,Deny
