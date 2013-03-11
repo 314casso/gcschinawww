@@ -13,6 +13,10 @@ from zinnia.models.entry import Entry
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from gcschinawww.local_settings import DEFAULT_FROM_EMAIL
+from cms.plugin_base import CMSPluginBase
+from cms.plugins.text.models import Text
+from cms.plugins.text.forms import TextForm
+from cms_helper.forms import PlainTextForm
 
 class CustomContactPlugin(ContactPlugin):
     name = _("Custom Contact Form")
@@ -94,4 +98,25 @@ class CMSCategoryEntriesPlugin(CMSQueryEntriesPlugin):
         return context
 
 plugin_pool.register_plugin(CMSCategoryEntriesPlugin)
+
+class PlainTextPlugin(CMSPluginBase):
+        model = Text
+        name = _("PlainText")
+        form = PlainTextForm
+        render_template = "cms/plugins/text.html"
+
+        def render(self, context, instance, placeholder):
+                context.update({
+                        'body': instance.body, 
+                        'placeholder': placeholder,
+                        'object': instance
+                })
+                return context
+        
+        def save_model(self, request, obj, form, change):
+                obj.clean_plugins()
+                super(PlainTextPlugin, self).save_model(request, obj,
+        form, change)
+
+plugin_pool.register_plugin(PlainTextPlugin)
     
