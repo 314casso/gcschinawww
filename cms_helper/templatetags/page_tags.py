@@ -9,8 +9,8 @@ from gcschinawww.settings import STATIC_URL
 register = template.Library()
     
 @register.simple_tag
-def get_copyright():
-    return u'© 1997—%s' % datetime.datetime.now().year
+def get_copyright(value):
+    return u'© %s—%s' % (value, datetime.datetime.now().year)
 
 @register.filter()
 def get_root_page_reverse_id(value):

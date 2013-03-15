@@ -36,7 +36,8 @@
 						<a href="/"><img src="{{ STATIC_URL }}ruscon/images/icon_home.gif" /></a>
 						<a href="/order/"><img src="{{ STATIC_URL }}ruscon/images/icon_contacts.gif" class="last" /></a>
 					</div>
-
+					
+					{% block slideshow %}
 					<div id="header_index">
 						<ul class="clients_animation_fade">
 							<li><img src="{{ STATIC_URL }}ruscon/images/header_index5.jpg" />
@@ -49,7 +50,10 @@
 							</li>
 						</ul>
 					</div>
-
+					{% endblock slideshow %}
+					
+					
+					{% block header %}
 					<div id="header">
 						<div id="logo"></div>
 						<div id="logo_">
@@ -58,7 +62,7 @@
 						<div id="phone"></div>
 						<div id="phone_">
 							<div id="clients_list">
-								{% placeholder "big-phones" inherit %}
+								{% show_placeholder "big-phones" "global_placeholder" %}								
 							</div>
 							<div class="clear"></div>
 
@@ -66,39 +70,41 @@
 
 						<div id="menu"></div>
 						<div id="menu_">
-							{cms_part:menu:1}
+							{% load cache menu_tags %}
+							<ul>
+							    {% show_menu 0 0 100 100 %}
+							</ul>
 						</div>
 
 						<div id="slogan">
-							{cms_part:text:1}
+							{% placeholder "bigpromo-title" inherit %}
 						</div>
 					</div>
+					{% endblock header %}
 
 					<div id="content">
 						<div id="content_left">
-							{cms_part:content:0}
+							{% block entry-content %}							
+							{% endblock entry-content %}
 						</div>
 						<div id="content_right">
 							<div id="content_right_">
 
 								<div id="servicesmenu">
-									{cms_part:ddmenu:2}
+									<ul>
+									{% show_menu_below_id "service" 0 100 100 100  'includes/menu.html' %}
+									</ul>
 								</div>
-
+								
 								<div class="window_header">
-									{cms_part:text:2}
-								</div>
-								<div class="window_body">
-									{search_form}
-								</div>
-
-								<div class="window_header">
-									{cms_part:text:3}
+									{% show_placeholder "banners-title" "global_placeholder" %}
 								</div>
 								<div class="window_body">
 									<div id="clients">
 										<div id="clients_">
-											{cms_part:module:clients}
+											<ul class="clients_animation_slide">
+												{% show_placeholder "banners" "global_placeholder" %}
+											</ul>	
 										</div>
 									</div>
 								</div>
@@ -109,21 +115,21 @@
 					</div>
 
 					<div id="banners">
-						{banners}
+						
 					</div>
 
 					<div id="footer">
 						<div id="footer_left">
-							{cms_part:text:4}
+							{% show_placeholder "adresses" "global_placeholder" %}
 						</div>
 						<div id="footer_right">
-							{counters}
+							{% show_placeholder "liveinternet" "global_placeholder" %}
 						</div>
 						<div class="clear"></div>
 					</div>
 
 					<div id="authors">
-						{authors}
+						{% get_copyright '2008' %}	{% show_placeholder "get-copyright" "global_placeholder" %}
 					</div>
 
 				</div>

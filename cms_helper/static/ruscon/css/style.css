@@ -43,7 +43,7 @@ ul.clients_animation_change, ul.clients_animation_change li {
 }
 
 body, td, p {
-	font-family: Tahoma;
+	font-family:  'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 body {
 	margin-top: 60px;
@@ -395,14 +395,14 @@ body {
  width: 700px;
  float: left;
  font-size: 11px;
- font-family: Tahoma;
+ font-family:  'Helvetica Neue', Helvetica, Arial, sans-serif;
  color: #555555;
  }
  #footer_right {
  width: 200px;
  float: right;
  font-size: 11px;
- font-family: Tahoma;
+ font-family:  'Helvetica Neue', Helvetica, Arial, sans-serif;
  color: #555555;
  text-align: right;
  }
@@ -415,14 +415,14 @@ body {
 	color: #000000;
 	vertical-align: top;
 	font-size: 11px;
-	font-family: Tahoma;
+	font-family:  'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 #footer td.office2 {
 	width: 150px;
 	color: #777777;
 	vertical-align: top;
 	font-size: 11px;
-	font-family: Tahoma;
+	font-family:  'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #authors {
@@ -542,8 +542,8 @@ body {
 	text-decoration: none;
 	border-bottom: 1px #ffffff dotted;
 }
-#servicesmenu ul li a.active {
-	color: #ffffff;
+#servicesmenu .selected .servicesmenu_ a, #servicesmenu .ancestor .servicesmenu_ a {
+	color: #fffdc5;
 	text-shadow: none;
 	font-family: PT Sans Caption;
 	text-rendering: optimizeLegibility;
@@ -592,7 +592,7 @@ body {
 	text-decoration: none;
 	border-bottom: none;
 }
-#servicesmenu ul li ul li a.active {
+#servicesmenu ul li ul li.selected a {
 	color: #055773;
 	text-shadow: #ffffff 1px 1px;
 	font-family: PT Sans Caption;
@@ -632,7 +632,7 @@ body {
 
 input {
 	font-size: 11px;
-	font-family: Tahoma;
+	font-family:  'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #faq {
@@ -839,3 +839,15 @@ img.left {
 a.current_item, a.current_branch {
 	color: #666;
 }
+
+
+#servicesmenu .submenu {
+	display: none;	
+}
+
+#servicesmenu .selected .submenu, .ancestor .submenu {
+	display: block !important;	
+}
+
+
+

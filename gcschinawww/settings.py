@@ -121,6 +121,8 @@ CACHES = {
 ZINNIA_PAGINATION = 10
 CMSPLUGIN_ZINNIA_TEMPLATES = [('includes/news_style.html', 'News style')]
 
+from django.utils.translation import ugettext_lazy as _
+CMSPLUGIN_FILER_FOLDER_VIEW_OPTIONS = (("list", _("List")),("slideshow",_("Slideshow")), ("simplelist", _("Simple list")))
 
 CMS_REDIRECTS = True
 
