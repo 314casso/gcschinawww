@@ -1,0 +1,150 @@
+body{
+    background: url(../images/bodybg.png) #555; 
+	font-family: Verdana, Tahoma, sans-serif;
+}
+
+.container {
+    border: 5px solid #333;
+    border-top: 0;
+}
+
+#header {
+    background: #366496;
+}
+
+#logo img{
+    /* margin-left: 20px; */
+}
+
+.container {
+   background-color: #d7e4f5;
+   /*background-color: white;*/
+}
+
+#sidebar {
+    background-color: #d7e4f5;
+    border: 5px solid #d7e4f5;    
+}
+
+#sidemenu, #sidesubmenu {
+    background-color: white;
+    /*border: 4px solid #d7e4f5;*/
+    overflow: hidden;
+}
+
+#sidemenu ul, #sidesubmenu ul{
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+}
+
+
+#sidesubmenu {
+	margin-top: 5px;
+    background-color: #d7e4f5;   
+}
+
+
+#logo-text {
+    line-height: 1.2em;
+    margin-top: 0.9em;
+    color: white;
+    text-transform: uppercase;
+}
+
+.super-font {
+    font-family: 'PT Sans Caption', Tahoma, Verdana, sans-serif;
+}
+
+
+.first .button {    
+    border-top: 0;
+}
+
+a.button {
+    border-top: 5px solid #d7e4f5;
+    /*width: 235px;            */
+    font-size: 21px;    
+    display: block;
+    color: #336598; 
+    text-decoration: none;    
+    background: url(../images/arrow_menu.png) no-repeat 95% center;
+    font-weight: normal;
+}
+
+#sidemenu .active a.button {
+    background: url(../images/arrow_button2.png) no-repeat 95% center;
+}
+
+#sidesubmenu .active a.button {
+    background: url(../images/arrow_button2.png) no-repeat 95% center;    
+}
+
+#sidesubmenu a {
+    background: url(../images/arrow_button1.png) no-repeat 95% center;
+    color: #484647;
+}
+
+#sidesubmenu .button {
+    font-size: 18px;
+    /* border-color: white; */
+}
+
+.pagetitle {
+    background: url(../images/arrow_down.png) no-repeat 0 60%;
+    padding-left: 30px;
+    font-size: 27px;
+    color: #336598;
+}
+
+.introtext {
+    color: #336598;
+    /*font-weight: bold;*/
+}
+
+#content-footer {
+    height: 227px;
+    background: url(../images/background.jpg) no-repeat;
+}
+
+#content {
+    background: white;    
+} 
+
+#footer {
+	margin-top:185px;
+	color: #555;
+}
+
+.foto ul {
+    list-style: none;
+    padding-left: 0;    
+}
+
+.foto ul li {
+    display: inline;
+    padding: 4px;
+}
+
+.foto img {
+    border: 4px solid #d7e4f5;
+}
+
+.custom-button { 
+    line-height: 40px;
+    padding: 8px 15px;
+    background: url(../images/button_background.jpg);
+    color: white;
+    text-decoration: none;
+    border: 2px solid #75a2db;
+}
+
+.custom-button span.arrow {
+    margin-left: 30px;
+    padding: 3px 16px;
+    background: url(../images/arrow_button1.png) no-repeat;
+}
+
+.custom-button:hover {        
+    color: white;    
+}

@@ -849,5 +849,24 @@ a.current_item, a.current_branch {
 	display: block !important;	
 }
 
+.image-list li{
+	list-style: none;
+	display: inline;	
+}
 
+.image-list li img {
+	float: left;
+	padding: 2px;
+}
 
+.paginator {
+	margin: 0;
+}
+
+#content_left .paginator li{
+	list-style: none;
+	display: inline;
+	margin: 0 2px 0 0;
+	border: 1px dotted #ccc;
+	padding: 4px;	
+}

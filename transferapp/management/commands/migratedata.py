@@ -1,18 +1,82 @@
 # -*- coding: utf-8 -*-
 from django.core.management.base import BaseCommand
-from transferapp.models import CmsModulePublications, CmsEnModulePublications
 from zinnia.models.entry import Entry
 from pytils.translit import slugify
 from django.template.defaultfilters import truncatewords
 from django.utils.text import Truncator
 from django.utils.translation import trans_real
+from transferapp.models import CmsContent, CmsMenu, CmsEnMenu, CmsEnContent,\
+    CmsCnMenu, CmsCnContent, CmsModuleNews
+from cms.models.pagemodel import Page
+from cms.api import add_plugin
+
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        self.create_press(1)
+#        self.check_db()
+#        self.page_to_page(3, 23)
 #        self.change_entry_cat(2, 3)
-        self.create_press(9,36)
+#        self.create_press(9,36)
     #    self.add_en_to_press()
+    
+    def page_to_page(self,old_id, new_id):
+        self.page_to_page_ru(old_id, new_id)
+        self.page_to_page_en(old_id, new_id)
+        self.page_to_page_cn(old_id, new_id)
+            
+    def page_to_page_ru(self,old_id, new_id):        
+        item = CmsContent.objects.using('old_db').get(menu_id=old_id)
+        old_menu = CmsMenu.objects.using('old_db').get(id=item.menu_id)
+        cms_page = Page.objects.get(id=new_id)
+        title = cms_page.title_set.get(language='ru')
+        title.title = item.h1 
+        title.menu_title = old_menu.menu_title
+        title.slug = old_menu.menu_uri                
+        title.page_title = item.title
+        title.meta_description = item.description
+        title.meta_keywords = item.keywords                
+        title.save()
+        placeholder = cms_page.placeholders.get(slot='page-content')
+        placeholder.cmsplugin_set.all().delete()
+        add_plugin(placeholder, 'TextPlugin', 'ru', body=item.body)
+    
+    def page_to_page_en(self,old_id, new_id):        
+        item = CmsEnContent.objects.using('old_db').get(menu_id=old_id)
+        old_menu = CmsEnMenu.objects.using('old_db').get(id=item.menu_id)
+        cms_page = Page.objects.get(id=new_id)
+        title = cms_page.title_set.get(language='en')
+        title.title = item.h1 
+        title.menu_title = old_menu.menu_title
+        title.slug = old_menu.menu_uri                
+        title.page_title = item.title
+        title.meta_description = item.description
+        title.meta_keywords = item.keywords                
+        title.save()
+        placeholder = cms_page.placeholders.get(slot='page-content')
+        add_plugin(placeholder, 'TextPlugin', 'en', body=item.body)
+    
+    def page_to_page_cn(self,old_id, new_id):        
+        item = CmsCnContent.objects.using('old_db').get(menu_id=old_id)
+        old_menu = CmsCnMenu.objects.using('old_db').get(id=item.menu_id)
+        cms_page = Page.objects.get(id=new_id)
+        title = cms_page.title_set.get(language='zh-cn')
+        title.title = item.h1 
+        title.menu_title = old_menu.menu_title
+        title.slug = old_menu.menu_uri                
+        title.page_title = item.title
+        title.meta_description = item.description
+        title.meta_keywords = item.keywords                
+        title.save()
+        placeholder = cms_page.placeholders.get(slot='page-content')
+        add_plugin(placeholder, 'TextPlugin', 'zh-cn', body=item.body)
+    
+    def check_db(self):
+        items = CmsMenu.objects.using('old_db').all()
+        for item in items:
+            print item.h1 
+        
     
     def change_entry_cat(self,old_id, new_id):
         posts = Entry.objects.filter(categories__id=old_id).order_by('last_update')
@@ -21,20 +85,19 @@ class Command(BaseCommand):
             post.categories.add(new_id)
     
     
-    def create_press(self, cat_id, filter_id):
-        items = CmsModulePublications.objects.using('old_db').filter(menu_id=filter_id)       
+    def create_press(self, cat_id):
+        items = CmsModuleNews.objects.using('old_db').all()       
         #Entry.objects.filter(categories__id=cat_id).delete()        
         for item in items:
             trans_real.activate('ru')
             d = str(item.updated)
-            slug = Truncator(item.title.decode('utf-8')).words(4, truncate='')
+            slug = Truncator(item.title).words(4, truncate='')
             slug = '%s-%s' % (slug, slugify(d))
             entry = Entry(title=item.title, content=item.body, excerpt=item.announce, 
                           last_update=item.updated, creation_date=item.published, slug=slugify(slug))
             entry.save()            
             entry.categories.add(cat_id)
-            entry.sites.add(1)
-        self.add_en_to_press(cat_id)    
+            entry.sites.add(1)            
 
     def add_en_to_press(self, cat_id):
         trans_real.activate('en')

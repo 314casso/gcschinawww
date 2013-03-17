@@ -76,7 +76,7 @@ class CMSCategoryEntriesPlugin(CMSQueryEntriesPlugin):
         if instance.number_of_entries:
             entries = entries[:instance.number_of_entries]
         
-        paginator = Paginator(entries, 10)  
+        paginator = Paginator(entries, 7)  
         self.request = context['request']          
         page = self.request.GET.get('page')
         try:
