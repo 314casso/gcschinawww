@@ -126,6 +126,7 @@ CMSPLUGIN_FILER_FOLDER_VIEW_OPTIONS = (("list", _("List")),("slideshow",_("Slide
 CMS_MENU_TITLE_OVERWRITE = True
 
 CMS_REDIRECTS = True
+CMS_CACHE_PREFIX = 'gcschina'
 
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
