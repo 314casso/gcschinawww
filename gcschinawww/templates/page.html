@@ -25,13 +25,4 @@
 </div>
 {% endblock header %}
 
-{% block entry-content %}
-<h1>{% placeholder "custom-title" or %}{% page_attribute title %}{% endplaceholder %}</h1>
-{% placeholder "page-content" or %}
-<ul>
- {% load cache menu_tags %}
- {% show_sub_menu 2 %}
-</ul>
-{% endplaceholder %}
-{% endblock %}
 
