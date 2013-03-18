@@ -5,3 +5,5 @@
 .pydevproject
 local_settings.py
 *.*~
+gcschinawww/media/*
+gcschinawww/static/*

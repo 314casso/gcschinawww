@@ -115,6 +115,8 @@ CACHES = {
     'default': dict(
         BACKEND = 'django.core.cache.backends.memcached.MemcachedCache',
         LOCATION = ['127.0.0.1:11211'],
+	KEY_PREFIX = 'gcschina',
+	CACHE_MIDDLEWARE_KEY_PREFIX = 'chinacache',
     )
 }
 
